@@ -71,6 +71,24 @@ header{
     padding: 5px;
     text-align: center;
 }
+.todos-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+#add-todo-btn{
+    background-color: var(--primary-button);
+    border: none;
+    padding: 10px 20px;
+    color: var(--background);
+    font-size: 20px;
+    border-radius: 8px;
+}
+
+#add-todo-btn:hover{
+    background-color: var(--primary-button-hover);
+}
 
 
 footer{
