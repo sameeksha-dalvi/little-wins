@@ -93,7 +93,10 @@ header {
     color: var(--background);
     font-size: 20px;
     border-radius: 8px;
-    border: 3px dashed var(--subtext-color);
+    border: 2px dashed var(--subtext-color);
+    font-weight: 600;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 #add-todo-btn:hover,
@@ -101,6 +104,7 @@ header {
 #save-todo-btn:hover {
     background-color: var(--primary-button-hover);
     border-color: var(--heading-color);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 .project-section-header {
@@ -158,15 +162,15 @@ header {
 #add-todo-modal {
     width: 450px;
     background-color: var(--card-bg);
-    border: 1px solid var(--hero-gradient-start);
+    border: 2px dashed var(--heading-color);
     border-radius: 12px;
     color: var(--heading-color);
-
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 #add-todo-modal::backdrop {
     background-color: var(--subtext-color);
-    opacity: 0.5;
+    opacity: 0.35;
 }
 
 #add-todo-form {
@@ -180,7 +184,7 @@ header {
 .add-todo-header {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid var(--primary-button);
+    border-bottom: 2px dashed var(--primary-button);
     padding: 5px;
 }
 
@@ -246,8 +250,8 @@ header {
     color: var(--subtext-color);
 }
 
-.todo-input:focus{
-    border-color:   var(--footer-bg);
+.todo-input:focus {
+    border-color: var(--footer-bg);
     outline: none;
 }
 
