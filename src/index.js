@@ -11,4 +11,4 @@ addTodoBtn.addEventListener('click', function () {
 
 closetodoModal.addEventListener('click',function(){
     todoModal.close();
-})
+});

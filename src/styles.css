@@ -143,6 +143,21 @@ header{
     background-color: var(--hero-gradient-start);
 }
 
+#add-todo-modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--hero-gradient-start);
+    border-radius: 12px;
+}
+
+#add-todo-form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 footer{
     text-align: center;
     padding-top: 8px;

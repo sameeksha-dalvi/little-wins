@@ -37,8 +37,35 @@
             </div>
         </div>
         <dialog id="add-todo-modal">
-            <button id="close-add-todo">Close</button>
-            <p>Add ToDo here</p>
+            <div>
+                <button id="close-add-todo">Close</button>
+                <p>Add New Todo</p>
+            </div>
+            <form action="" id="add-todo-form">
+                <label>Todo Title
+                    <input type="text" placeholder="What needs to be done?">
+                </label>
+
+                <label for="">Description
+                    <textarea name="" id="" placeholder="Add more details..."></textarea>
+                </label>
+
+                <label for="">Due Date</label>
+                <input type="date">
+                <label>Priority
+                    <select name="" id="">
+                        <option value="">Low</option>
+                        <option value="">Medium</option>
+                        <option value="">High</option>
+                    </select></label>
+                <label for="">Addition Notes
+                    <textarea name="" id="" placeholder="Optional notes..."></textarea>
+
+                </label>
+
+                <button>Save Todo</button>
+            </form>
+
         </dialog>
     </div>
     <footer>Built by Sameeksha as part of The Odin Project</footer>
