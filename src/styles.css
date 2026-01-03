@@ -20,6 +20,7 @@
     --cta-bg: #78716C;
     --footer-bg: #292524;
     --footer-text: #E7E5E4;
+    --error-border:rgb(183, 34, 34);
 }
 
 body {
@@ -254,6 +255,12 @@ header {
     border-color: var(--footer-bg);
     outline: none;
 }
+
+.todo-input:invalid {
+    border: 2px dashed var(--error-border);
+    outline: none;
+}
+
 
 textarea {
     resize: none;

@@ -9,7 +9,21 @@ addTodoBtn.addEventListener('click', function () {
     todoModal.showModal();
 });
 
-closetodoModal.addEventListener('click',function (){
+closetodoModal.addEventListener('click', function () {
     todoModal.close();
     console.log("close modal clicked")
+});
+
+const todoTitle = document.querySelector("#todo-title");
+
+todoTitle.addEventListener("input", function () {
+
+    todoTitle.setCustomValidity("");
+
+    if (todoTitle.validity.valueMissing) {
+        todoTitle.setCustomValidity("Please enter todo title");
+    }
+
+    todoTitle.reportValidity();
+
 });
