@@ -37,33 +37,51 @@
             </div>
         </div>
         <dialog id="add-todo-modal">
-            <div>
-                <button id="close-add-todo">Close</button>
+            <div class="add-todo-header">
                 <p>Add New Todo</p>
+                <button id="close-add-todo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <title>close</title>
+                        <path
+                            d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+                    </svg></button>
             </div>
             <form action="" id="add-todo-form">
-                <label>Todo Title
-                    <input type="text" placeholder="What needs to be done?">
-                </label>
+                <div class="todo-title-div">
+                    <label class="todo-label" for="todo-title">Todo Title</label>
+                    <input class="todo-input" id="todo-title" type="text" placeholder="What needs to be done?">
+                </div>
+                <div class="todo-desc-div">
+                    <label class="todo-label" for="todo-desc">Description</label>
+                    <textarea class="todo-input" name="" id="todo-desc" placeholder="Add more details..."></textarea>
+                </div>
 
-                <label for="">Description
-                    <textarea name="" id="" placeholder="Add more details..."></textarea>
-                </label>
+                <div class="date-priority-div">
+                    <div>
+                        <label class="todo-label" for="">Due Date</label>
+                        <input class="todo-input" type="date">
+                    </div>
+                    <div>
+                        <label class="todo-label">Priority</label>
+                        <select class="todo-input" name="" id="">
+                            <option value="">Low</option>
+                            <option value="">Medium</option>
+                            <option value="">High</option>
+                        </select>
+                    </div>
 
-                <label for="">Due Date</label>
-                <input type="date">
-                <label>Priority
-                    <select name="" id="">
-                        <option value="">Low</option>
-                        <option value="">Medium</option>
-                        <option value="">High</option>
-                    </select></label>
-                <label for="">Addition Notes
-                    <textarea name="" id="" placeholder="Optional notes..."></textarea>
+                </div>
+                <div class="todo-desc-div">
+                    <label class="todo-label" for="">Addition Notes</label>
+                    <textarea class="todo-input" name="" id="" placeholder="Optional notes..."></textarea>
 
-                </label>
 
-                <button>Save Todo</button>
+                </div>
+
+
+
+
+                <button id="save-todo-btn">Save Todo</button>
             </form>
 
         </dialog>

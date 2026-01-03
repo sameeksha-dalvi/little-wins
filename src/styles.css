@@ -8,54 +8,60 @@
 }
 
 :root {
-  --background: #FAFAF9;
-  --hero-gradient-start: #E7E5E4;
-  --hero-gradient-end: #F5F5F4;
-  --heading-color: #292524;
-  --subtext-color: #78716C;
-  --primary-button: #A8A29E;
-  --primary-button-hover: #78716C;
-  --card-bg: #FFFFFF;
-  --card-section-bg: #F5F5F4;
-  --cta-bg: #78716C;
-  --footer-bg: #292524;
-  --footer-text: #E7E5E4;
+    --background: #FAFAF9;
+    --hero-gradient-start: #E7E5E4;
+    --hero-gradient-end: #F5F5F4;
+    --heading-color: #292524;
+    --subtext-color: #78716C;
+    --primary-button: #A8A29E;
+    --primary-button-hover: #78716C;
+    --card-bg: #FFFFFF;
+    --card-section-bg: #F5F5F4;
+    --cta-bg: #78716C;
+    --footer-bg: #292524;
+    --footer-text: #E7E5E4;
 }
 
-body{
-    background-image: linear-gradient(to bottom, var(--hero-gradient-start), var(--hero-gradient-end)) ;
+body {
+    background-image: linear-gradient(to bottom, var(--hero-gradient-start), var(--hero-gradient-end));
     color: var(--heading-color);
     margin: 0;
     display: flex;
     flex-direction: column;
     height: 100vh;
-    font-family: DM Sans,system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: DM Sans, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-header{
+svg {
+    width: 30px;
+    height: auto;
+}
+
+header {
     display: flex;
     align-items: center;
     padding: 10px;
 }
 
-.header-center{
-     flex: 1;
+.header-center {
+    flex: 1;
     text-align: center;
 }
 
-#title{
+#title {
     font-size: 32px;
     letter-spacing: 2px;
     font-weight: 600;
 }
 
-#current-project,#current-project-name{
+#current-project,
+#current-project-name {
     font-size: 18px;
     font-weight: 500;
     letter-spacing: 1px;
 }
 
-.content-container{
+.content-container {
     flex: 1;
     padding: 10px;
     display: grid;
@@ -63,35 +69,41 @@ header{
     gap: 20px;
 }
 
-.project-section,.todos-section{
-    border: 3px dotted var(--heading-color);
+.project-section,
+.todos-section {
+    border: 3px dashed var(--heading-color);
     background-color: var(--card-bg);
     border-radius: 12px;
     padding: 5px;
     text-align: center;
 }
-.todos-header{
+
+.todos-header {
     display: flex;
     justify-content: space-between;
     padding: 10px;
 }
 
-#add-todo-btn,#add-project-btn{
+#add-todo-btn,
+#add-project-btn,
+#save-todo-btn {
     background-color: var(--primary-button);
     border: none;
     padding: 10px 20px;
     color: var(--background);
     font-size: 20px;
     border-radius: 8px;
-    border: 3px dotted var(--subtext-color);
+    border: 3px dashed var(--subtext-color);
 }
 
-#add-todo-btn:hover,#add-project-btn:hover{
+#add-todo-btn:hover,
+#add-project-btn:hover,
+#save-todo-btn:hover {
     background-color: var(--primary-button-hover);
     border-color: var(--heading-color);
 }
 
-.project-section-header{
+.project-section-header {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -99,7 +111,7 @@ header{
     align-items: flex-start;
 }
 
-.project-section-header > h2{
+.project-section-header>h2 {
     font-size: 16px;
     letter-spacing: 1px;
     padding: 0;
@@ -109,14 +121,14 @@ header{
 
 }
 
-#todo-project-name{
+#todo-project-name {
     font-size: 20px;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 600;
 }
 
-.current-project-sidebar{
+.current-project-sidebar {
     border: 1px solid var(--footer-bg);
     display: flex;
     justify-content: space-around;
@@ -130,7 +142,7 @@ header{
     font-size: 20px;
 }
 
-#delete-project-btn{
+#delete-project-btn {
     background-color: var(--background);
     border: none;
     padding: 5px 10px;
@@ -139,26 +151,111 @@ header{
     letter-spacing: 1px;
 }
 
-#delete-project-btn:hover{
+#delete-project-btn:hover {
     background-color: var(--hero-gradient-start);
 }
 
-#add-todo-modal{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--hero-gradient-start);
+#add-todo-modal {
+    width: 450px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--hero-gradient-start);
     border-radius: 12px;
+    color: var(--heading-color);
+
 }
 
-#add-todo-form{
+#add-todo-modal::backdrop {
+    background-color: var(--subtext-color);
+    opacity: 0.5;
+}
+
+#add-todo-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    align-items: center;
+    padding: 5px;
 }
 
-footer{
+.add-todo-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--primary-button);
+    padding: 5px;
+}
+
+.add-todo-header>p {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+#close-add-todo {
+    background: none;
+    border: none;
+}
+
+#close-add-todo>svg {
+    color: var(--cta-bg);
+}
+
+#close-add-todo>svg:hover {
+    color: var(--footer-bg);
+}
+
+#save-todo-btn {
+    width: 35%;
+}
+
+.todo-title-div,
+.todo-desc-div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 5px;
+}
+
+.date-priority-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.date-priority-div>div,
+.date-priority-div>div>div {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    gap: 10px;
+}
+
+.todo-label {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--heading-color);
+}
+
+.todo-input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid var(--subtext-color);
+
+    color: var(--subtext-color);
+}
+
+.todo-input:focus{
+    border-color:   var(--footer-bg);
+    outline: none;
+}
+
+textarea {
+    resize: none;
+}
+
+footer {
     text-align: center;
     padding-top: 8px;
     font-size: 12px;
@@ -166,4 +263,3 @@ footer{
     background-color: var(--footer-bg);
     color: var(--footer-text);
 }
-

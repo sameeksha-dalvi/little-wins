@@ -9,6 +9,7 @@ addTodoBtn.addEventListener('click', function () {
     todoModal.showModal();
 });
 
-closetodoModal.addEventListener('click',function(){
+closetodoModal.addEventListener('click',function (){
     todoModal.close();
+    console.log("close modal clicked")
 });
