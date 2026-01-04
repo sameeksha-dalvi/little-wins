@@ -15,15 +15,29 @@ closetodoModal.addEventListener('click', function () {
 });
 
 const todoTitle = document.querySelector("#todo-title");
+const todoDueDate = document.querySelector("#todo-due-date");
 
 todoTitle.addEventListener("input", function () {
 
     todoTitle.setCustomValidity("");
 
     if (todoTitle.validity.valueMissing) {
-        todoTitle.setCustomValidity("Please enter todo title");
+        todoTitle.setCustomValidity("Please enter todo title!");
     }
 
     todoTitle.reportValidity();
+
+});
+
+
+todoDueDate.addEventListener("input", function () {
+
+    todoDueDate.setCustomValidity("");
+
+    if (todoDueDate.validity.valueMissing) {
+        todoDueDate.setCustomValidity("Please enter todo due date!");
+    }
+
+    todoDueDate.reportValidity();
 
 });
