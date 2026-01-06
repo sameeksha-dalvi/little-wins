@@ -20,7 +20,7 @@
     --cta-bg: #78716C;
     --footer-bg: #292524;
     --footer-text: #E7E5E4;
-    --error-border:rgb(183, 34, 34);
+    --error-border: rgb(183, 34, 34);
 }
 
 body {
@@ -87,7 +87,8 @@ header {
 
 #add-todo-btn,
 #add-project-btn,
-#save-todo-btn {
+#save-todo-btn,
+.todo-btn {
     background-color: var(--primary-button);
     border: none;
     padding: 10px 20px;
@@ -102,7 +103,8 @@ header {
 
 #add-todo-btn:hover,
 #add-project-btn:hover,
-#save-todo-btn:hover {
+#save-todo-btn:hover,
+.todo-btn:hover {
     background-color: var(--primary-button-hover);
     border-color: var(--heading-color);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
@@ -256,14 +258,68 @@ header {
     outline: none;
 }
 
-.todo-input:invalid {
+/* .todo-input:invalid {
     border: 2px dashed var(--error-border);
     outline: none;
-}
+} */
 
 
 textarea {
     resize: none;
+}
+
+.todo-card {
+    border-radius: 8px;
+    margin: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: var(--card-bg);
+    border: 2px dashed var(--subtext-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.todo-sub {
+    display: flex;
+    gap: 15px;
+    padding: 10px
+}
+
+.todo-mainText {
+    font-size: 25px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: var(--heading-color);
+    margin-left: 10px;
+    text-transform: uppercase;
+}
+
+.todo-subText {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--subtext-color);
+}
+
+.todo-data-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.todo-btn-section {
+    display: flex;
+    gap: 10px;
+}
+
+.todo-btn {
+    font-size: 16px;
+    border-radius: 8px;
+    padding: 5px 10px;
+    letter-spacing: 1px;
+    border: 1px dashed var(--subtext-color);
 }
 
 footer {

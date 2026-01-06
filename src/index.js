@@ -1,5 +1,6 @@
 import "./styles.css";
 import { createTodo } from "./todoManager";
+import { showTodoCard } from "./todoUI";
 
 
 const addTodoBtn = document.querySelector("#add-todo-btn");
@@ -23,8 +24,45 @@ closetodoModal.addEventListener('click', function () {
 
 
 
-todoTitle.addEventListener("input", function () {
+let isTryingToSave = false;
 
+const saveTodoBtn = document.querySelector("#save-todo-btn");
+
+saveTodoBtn.addEventListener("click", function (event) {
+
+    isTryingToSave = true;
+
+    if (todoTitle.value === "" || todoDueDate.value === "") {
+        if (todoTitle.value === "") todoTitle.setCustomValidity("Please enter todo title!");
+        if (todoDueDate.value === "") todoDueDate.setCustomValidity("Please enter due date!");
+        todoTitle.reportValidity();
+        todoDueDate.reportValidity();
+        return;
+    }
+
+    const todo = createTodo(
+        todoTitle.value,
+        todoDesc.value,
+        todoDueDate.value,
+        todoPriority.value,
+        todoNotes.value
+    );
+
+    console.log("todo object" + todo.getTitle());
+
+    showTodoCard(todo);
+    resetFormData();
+
+    event.preventDefault();
+    todoModal.close();
+
+    isTryingToSave = false; 
+
+
+});
+
+todoTitle.addEventListener("input", function () {
+    if (!isTryingToSave) { return };
     todoTitle.setCustomValidity("");
 
     if (todoTitle.validity.valueMissing) {
@@ -37,7 +75,7 @@ todoTitle.addEventListener("input", function () {
 
 
 todoDueDate.addEventListener("input", function () {
-
+    if (!isTryingToSave) { return };
     todoDueDate.setCustomValidity("");
 
     if (todoDueDate.validity.valueMissing) {
@@ -48,34 +86,10 @@ todoDueDate.addEventListener("input", function () {
 
 });
 
-const saveTodoBtn = document.querySelector("#save-todo-btn");
-
-saveTodoBtn.addEventListener("click", function (event) {
-
-    if (todoTitle.value == "" || todoDueDate.value == "") {
-        return;
-    }
-
-    const todo = createTodo(
-        todoTitle.value,
-        todoDesc.value,
-        todoDueDate.value,
-        todoPriority.value,
-        todoNotes.value
-    );
-
-    console.log(todo.getTitle());
-    resetFormData();
-    event.preventDefault();
-    todoModal.close();
-
-
-});
-
 function resetFormData() {
     todoTitle.value = "";
     todoDesc.value = "";
     todoDueDate.value = "";
-    todoPriority.value = "";
+    todoPriority.value = "Low";
     todoNotes.value = "";
 }
