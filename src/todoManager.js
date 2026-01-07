@@ -1,3 +1,6 @@
+const todos = [];
+
+
 function createTodo(id, title, desc, dueDate , priority, notes) {
     const getTodoId = () => id;
     const getTitle = () => title;
@@ -8,6 +11,12 @@ function createTodo(id, title, desc, dueDate , priority, notes) {
     return { getTodoId, getTitle, getDesc,  getDueDate , getPriority, getNotes};
 }
 
+function addTodo(todo){
+    todos.push(todo);
+}
 
+function findTodoById(todoId){
+    return  todos.find((todo) => todo.getTodoId() === todoId);
+}
 
-export { createTodo };
+export { createTodo, addTodo, findTodoById };

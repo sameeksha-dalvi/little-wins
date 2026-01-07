@@ -1,5 +1,5 @@
 import "./styles.css";
-import { createTodo } from "./todoManager";
+import { createTodo, addTodo, findTodoById } from "./todoManager";
 import { showTodoCard } from "./todoUI";
 
 
@@ -40,7 +40,7 @@ saveTodoBtn.addEventListener("click", function (event) {
         return;
     }
 
-     const todoId = crypto.randomUUID();
+    const todoId = crypto.randomUUID();
 
     const todo = createTodo(
         todoId,
@@ -54,14 +54,14 @@ saveTodoBtn.addEventListener("click", function (event) {
     //console.log("todo object" + todo.getTitle());
 
     console.log("todo id" + todo.getTodoId());
-
+    addTodo(todo);
     showTodoCard(todo);
     resetFormData();
 
     event.preventDefault();
     todoModal.close();
 
-    isTryingToSave = false; 
+    isTryingToSave = false;
 
 
 });
@@ -101,25 +101,27 @@ function resetFormData() {
 
 const todoCardClick = document.querySelector('.todo-card-container');
 
-todoCardClick.addEventListener('click', function(event){
+todoCardClick.addEventListener('click', function (event) {
 
-    if(event.target.tagName === "BUTTON"){
+    if (event.target.tagName === "BUTTON") {
 
         const todoCard = event.target.closest('.todo-card');
         const todoId = todoCard.dataset.id;
-        console.log("todo id :"+todoId);
-        if(event.target.classList.contains("edit-todo-btn")){
-                console.log("Edit button clicked!!!")
+        //console.log("todo id :" + todoId);
+        const todoData = findTodoById(todoId);
+        console.log("todo data clicked :" + todoData.getTitle());
+        if (event.target.classList.contains("edit-todo-btn")) {
+            console.log("Edit button clicked!!!")
         }
 
 
-        if(event.target.classList.contains("complete-todo-btn")){
-             console.log("Complete button clicked!!!")
+        if (event.target.classList.contains("complete-todo-btn")) {
+            console.log("Complete button clicked!!!")
         }
 
 
-        if(event.target.classList.contains("delete-todo-btn")){
-             console.log("Delete button clicked!!!")
+        if (event.target.classList.contains("delete-todo-btn")) {
+            console.log("Delete button clicked!!!")
         }
     }
 });
