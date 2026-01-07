@@ -40,7 +40,10 @@ saveTodoBtn.addEventListener("click", function (event) {
         return;
     }
 
+     const todoId = crypto.randomUUID();
+
     const todo = createTodo(
+        todoId,
         todoTitle.value,
         todoDesc.value,
         todoDueDate.value,
@@ -48,7 +51,9 @@ saveTodoBtn.addEventListener("click", function (event) {
         todoNotes.value
     );
 
-    console.log("todo object" + todo.getTitle());
+    //console.log("todo object" + todo.getTitle());
+
+    console.log("todo id" + todo.getTodoId());
 
     showTodoCard(todo);
     resetFormData();

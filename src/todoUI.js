@@ -5,7 +5,8 @@ function showTodoCard(todo) {
 
     const todoCardDiv = document.createElement('div');
     todoCardDiv.className = "todo-card";
-
+    todoCardDiv.setAttribute('data-id',todo.getTodoId());
+    
     const todoDataDiv = document.createElement('div');
     todoDataDiv.className = "todo-data-section";
 
