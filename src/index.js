@@ -98,3 +98,28 @@ function resetFormData() {
     todoPriority.value = "Low";
     todoNotes.value = "";
 }
+
+const todoCardClick = document.querySelector('.todo-card-container');
+
+todoCardClick.addEventListener('click', function(event){
+
+    if(event.target.tagName === "BUTTON"){
+
+        const todoCard = event.target.closest('.todo-card');
+        const todoId = todoCard.dataset.id;
+        console.log("todo id :"+todoId);
+        if(event.target.classList.contains("edit-todo-btn")){
+                console.log("Edit button clicked!!!")
+        }
+
+
+        if(event.target.classList.contains("complete-todo-btn")){
+             console.log("Complete button clicked!!!")
+        }
+
+
+        if(event.target.classList.contains("delete-todo-btn")){
+             console.log("Delete button clicked!!!")
+        }
+    }
+});

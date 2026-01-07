@@ -1,12 +1,12 @@
 
 function showTodoCard(todo) {
-    console.log("showTodoCard called ");
-    const todoSection = document.querySelector('.todos-section');
+    
+    const todoCardContainer = document.querySelector('.todo-card-container');
 
     const todoCardDiv = document.createElement('div');
     todoCardDiv.className = "todo-card";
     todoCardDiv.setAttribute('data-id',todo.getTodoId());
-    
+
     const todoDataDiv = document.createElement('div');
     todoDataDiv.className = "todo-data-section";
 
@@ -14,15 +14,15 @@ function showTodoCard(todo) {
     todoButtonDiv.className = "todo-btn-section";
 
     const todoViewBtn = document.createElement('button');
-    todoViewBtn.className = "todo-btn";
+    todoViewBtn.className = "todo-btn edit-todo-btn";
     todoViewBtn.textContent = "View/Edit";
 
     const todoCompleteBtn = document.createElement('button');
-    todoCompleteBtn.className = "todo-btn";
+    todoCompleteBtn.className = "todo-btn complete-todo-btn";
     todoCompleteBtn.textContent = "Complete";
 
     const todoDeleteBtn = document.createElement('button');
-    todoDeleteBtn.className = "todo-btn";
+    todoDeleteBtn.className = "todo-btn delete-todo-btn";
     todoDeleteBtn.textContent = "Delete";
 
     todoButtonDiv.appendChild(todoViewBtn);
@@ -54,7 +54,7 @@ function showTodoCard(todo) {
 
     todoCardDiv.appendChild(todoDataDiv);
     todoCardDiv.appendChild(todoButtonDiv);
-    todoSection.appendChild(todoCardDiv);
+    todoCardContainer.appendChild(todoCardDiv);
 
     console.log("showTodoCard : " + todo.getTitle())
 
