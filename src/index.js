@@ -1,6 +1,6 @@
 import "./styles.css";
 import { createTodo, addTodo, findTodoById } from "./todoManager";
-import { showTodoCard } from "./todoUI";
+import { showTodoCard, toggleCompletedUI } from "./todoUI";
 
 
 const addTodoBtn = document.querySelector("#add-todo-btn");
@@ -116,7 +116,8 @@ todoCardClick.addEventListener('click', function (event) {
 
 
         if (event.target.classList.contains("complete-todo-btn")) {
-            console.log("Complete button clicked!!!")
+            const action = event.target.textContent.toLowerCase();
+            toggleCompletedUI(todoId, action);
         }
 
 

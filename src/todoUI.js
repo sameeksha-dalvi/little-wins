@@ -1,11 +1,11 @@
 
 function showTodoCard(todo) {
-    
+
     const todoCardContainer = document.querySelector('.todo-card-container');
 
     const todoCardDiv = document.createElement('div');
     todoCardDiv.className = "todo-card";
-    todoCardDiv.setAttribute('data-id',todo.getTodoId());
+    todoCardDiv.setAttribute('data-id', todo.getTodoId());
 
     const todoDataDiv = document.createElement('div');
     todoDataDiv.className = "todo-data-section";
@@ -60,4 +60,23 @@ function showTodoCard(todo) {
 
 }
 
-export { showTodoCard };
+function toggleCompletedUI(todoId, action) {
+
+    const todoCard = document.querySelector(`.todo-card[data-id="${todoId}"]`);
+
+    if (action === "complete") {
+        todoCard.classList.add('todo-card-completed');
+        todoCard.firstChild.firstChild.classList.add('strike-todo');
+        todoCard.lastChild.children[1].textContent = "Undo";
+    }
+
+    if (action === "undo") {
+        todoCard.lastChild.children[1].textContent = "Complete";
+        todoCard.classList.remove('todo-card-completed');
+        todoCard.firstChild.firstChild.classList.remove('strike-todo');
+    }
+
+
+}
+
+export { showTodoCard, toggleCompletedUI };

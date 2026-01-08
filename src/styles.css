@@ -20,7 +20,7 @@
     --cta-bg: #78716C;
     --footer-bg: #292524;
     --footer-text: #E7E5E4;
-    --error-border: rgb(183, 34, 34);
+    --todo-completed-border: #D6D3D1;
 }
 
 body {
@@ -258,11 +258,6 @@ header {
     outline: none;
 }
 
-/* .todo-input:invalid {
-    border: 2px dashed var(--error-border);
-    outline: none;
-} */
-
 
 textarea {
     resize: none;
@@ -320,6 +315,17 @@ textarea {
     padding: 5px 10px;
     letter-spacing: 1px;
     border: 1px dashed var(--subtext-color);
+}
+
+.strike-todo {
+    text-decoration: line-through;
+    color: var(--subtext-color);
+}
+
+.todo-card-completed {
+    background-color: var(--card-section-bg);
+    border-color: var(--todo-completed-border);
+    opacity: 0.75;
 }
 
 footer {
