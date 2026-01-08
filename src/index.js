@@ -1,5 +1,5 @@
 import "./styles.css";
-import { createTodo, addTodo, findTodoById } from "./todoManager";
+import { createTodo, addTodo, findTodoById, toggleTodoCompleted } from "./todoManager";
 import { showTodoCard, toggleCompletedUI } from "./todoUI";
 
 
@@ -116,7 +116,8 @@ todoCardClick.addEventListener('click', function (event) {
 
 
         if (event.target.classList.contains("complete-todo-btn")) {
-            const action = event.target.textContent.toLowerCase();
+            const updatedState = toggleTodoCompleted(todoId);
+            const action = updatedState ? "complete" : "undo";
             toggleCompletedUI(todoId, action);
         }
 
