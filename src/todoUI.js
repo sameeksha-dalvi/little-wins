@@ -87,4 +87,11 @@ function removeTodoCardUI(todoId) {
 
 }
 
-export { showTodoCard, toggleCompletedUI, removeTodoCardUI };
+function updateTodoDataUI(todoId,todo){
+    const todoCard = document.querySelector(`.todo-card[data-id="${todoId}"]`);
+    todoCard.firstChild.firstChild.textContent = todo.getTitle();
+    todoCard.firstChild.lastChild.children[0].textContent = "Due Date : " + todo.getDueDate();
+    todoCard.firstChild.lastChild.children[1].textContent = "Priority : " + todo.getPriority();
+}
+
+export { showTodoCard, toggleCompletedUI, removeTodoCardUI, updateTodoDataUI };

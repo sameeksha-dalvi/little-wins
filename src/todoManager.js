@@ -11,11 +11,46 @@ function createTodo(id, title, desc, dueDate, priority, notes) {
     const getNotes = () => notes;
     const isCompleted = () => completed;
 
+    const setTitle = (newTitle) => {
+        title = newTitle;
+    };
+
+    const setDesc = (newDesc) => {
+        desc = newDesc;
+    };
+
+    const setDueDate = (newDate) => {
+        dueDate = newDate;
+    };
+
+    const setPriority = (newPriority) => {
+        priority = newPriority;
+    };
+
+    const setNotes = (newNotes) => {
+        notes = newNotes;
+    };
+
+
     const toggleCompleted = () => {
         completed = !completed;
     };
 
-    return { getTodoId, getTitle, getDesc, getDueDate, getPriority, getNotes, isCompleted, toggleCompleted };
+    return {
+        getTodoId,
+        getTitle,
+        getDesc,
+        getDueDate,
+        getPriority,
+        getNotes,
+        isCompleted,
+        toggleCompleted,
+        setTitle,
+        setDesc,
+        setDueDate,
+        setPriority,
+        setNotes
+    };
 }
 
 function addTodo(todo) {
@@ -38,10 +73,22 @@ function toggleTodoCompleted(todoId) {
 function deleteTodoById(todoId) {
     const index = todos.findIndex(todo => todo.getTodoId() === todoId);
     if (index === -1) {
-        return false; 
+        return false;
     }
     todos.splice(index, 1);
     return true;
 }
 
-export { createTodo, addTodo, findTodoById, toggleTodoCompleted,deleteTodoById };
+function updateTodo(todoId, newTitle, newDesc, newDate, newPriority, newNotes) {
+    const todo = findTodoById(todoId);
+    if (!todo) return;
+
+    todo.setTitle(newTitle);
+    todo.setDesc(newDesc);
+    todo.setDueDate(newDate);
+    todo.setPriority(newPriority);
+    todo.setNotes(newNotes);
+    return todo;
+}
+
+export { createTodo, addTodo, findTodoById, toggleTodoCompleted, deleteTodoById, updateTodo };
