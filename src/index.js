@@ -1,6 +1,6 @@
 import "./styles.css";
-import { createTodo, addTodo, findTodoById, toggleTodoCompleted } from "./todoManager";
-import { showTodoCard, toggleCompletedUI } from "./todoUI";
+import { createTodo, addTodo, findTodoById, toggleTodoCompleted, deleteTodoById } from "./todoManager";
+import { showTodoCard, toggleCompletedUI, removeTodoCardUI } from "./todoUI";
 
 
 const addTodoBtn = document.querySelector("#add-todo-btn");
@@ -50,8 +50,6 @@ saveTodoBtn.addEventListener("click", function (event) {
         todoPriority.value,
         todoNotes.value
     );
-
-    //console.log("todo object" + todo.getTitle());
 
     console.log("todo id" + todo.getTodoId());
     addTodo(todo);
@@ -107,9 +105,8 @@ todoCardClick.addEventListener('click', function (event) {
 
         const todoCard = event.target.closest('.todo-card');
         const todoId = todoCard.dataset.id;
-        //console.log("todo id :" + todoId);
         const todoData = findTodoById(todoId);
-        console.log("todo data clicked :" + todoData.getTitle());
+
         if (event.target.classList.contains("edit-todo-btn")) {
             console.log("Edit button clicked!!!")
         }
@@ -123,7 +120,10 @@ todoCardClick.addEventListener('click', function (event) {
 
 
         if (event.target.classList.contains("delete-todo-btn")) {
-            console.log("Delete button clicked!!!")
+            const deleted = deleteTodoById(todoId);
+            if (deleted) {
+                removeTodoCardUI(todoId);
+            }
         }
     }
 });

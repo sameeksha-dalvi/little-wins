@@ -15,7 +15,7 @@ function createTodo(id, title, desc, dueDate, priority, notes) {
         completed = !completed;
     };
 
-    return { getTodoId, getTitle, getDesc, getDueDate, getPriority, getNotes, isCompleted, toggleCompleted};
+    return { getTodoId, getTitle, getDesc, getDueDate, getPriority, getNotes, isCompleted, toggleCompleted };
 }
 
 function addTodo(todo) {
@@ -34,4 +34,14 @@ function toggleTodoCompleted(todoId) {
     return todo.isCompleted();
 }
 
-export { createTodo, addTodo, findTodoById, toggleTodoCompleted };
+
+function deleteTodoById(todoId) {
+    const index = todos.findIndex(todo => todo.getTodoId() === todoId);
+    if (index === -1) {
+        return false; 
+    }
+    todos.splice(index, 1);
+    return true;
+}
+
+export { createTodo, addTodo, findTodoById, toggleTodoCompleted,deleteTodoById };

@@ -79,4 +79,12 @@ function toggleCompletedUI(todoId, action) {
 
 }
 
-export { showTodoCard, toggleCompletedUI };
+
+function removeTodoCardUI(todoId) {
+
+    const todoCard = document.querySelector(`.todo-card[data-id="${todoId}"]`);
+    todoCard.remove();
+
+}
+
+export { showTodoCard, toggleCompletedUI, removeTodoCardUI };
