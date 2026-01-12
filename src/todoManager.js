@@ -1,5 +1,3 @@
-const todos = [];
-
 
 function createTodo(id, title, desc, dueDate, priority, notes) {
     let completed = false;
@@ -53,42 +51,6 @@ function createTodo(id, title, desc, dueDate, priority, notes) {
     };
 }
 
-function addTodo(todo) {
-    todos.push(todo);
-}
-
-function findTodoById(todoId) {
-    return todos.find((todo) => todo.getTodoId() === todoId);
-}
 
 
-function toggleTodoCompleted(todoId) {
-    const todo = findTodoById(todoId);
-    if (!todo) return;
-    todo.toggleCompleted();
-    return todo.isCompleted();
-}
-
-
-function deleteTodoById(todoId) {
-    const index = todos.findIndex(todo => todo.getTodoId() === todoId);
-    if (index === -1) {
-        return false;
-    }
-    todos.splice(index, 1);
-    return true;
-}
-
-function updateTodo(todoId, newTitle, newDesc, newDate, newPriority, newNotes) {
-    const todo = findTodoById(todoId);
-    if (!todo) return;
-
-    todo.setTitle(newTitle);
-    todo.setDesc(newDesc);
-    todo.setDueDate(newDate);
-    todo.setPriority(newPriority);
-    todo.setNotes(newNotes);
-    return todo;
-}
-
-export { createTodo, addTodo, findTodoById, toggleTodoCompleted, deleteTodoById, updateTodo };
+export { createTodo };

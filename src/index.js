@@ -1,7 +1,9 @@
 import "./styles.css";
-import { createTodo, addTodo, findTodoById, toggleTodoCompleted, deleteTodoById, updateTodo } from "./todoManager";
+import { createTodo } from "./todoManager";
 import { showTodoCard, toggleCompletedUI, removeTodoCardUI, updateTodoDataUI } from "./todoUI";
+import { initDefaultProject, addTodo, findTodoById, toggleTodoCompleted, deleteTodoById, updateTodo} from "./projectManager";
 
+initDefaultProject();
 
 const addTodoBtn = document.querySelector("#add-todo-btn");
 const todoModal = document.querySelector("#add-todo-modal");
@@ -13,6 +15,10 @@ const todoPriority = document.querySelector("#todo-priority");
 const todoNotes = document.querySelector("#todo-notes");
 const dialogTitle = document.querySelector("#dialog-title");
 const saveTodoBtn = document.querySelector("#save-todo-btn");
+const addProjectBtn = document.querySelector("#add-project-btn");
+const projectModal = document.querySelector("#add-project-modal");
+const closeProjectModal = document.querySelector("#close-add-project");
+
 let currentEditTodoId = null;
 
 let isTryingToSave = false;
@@ -130,6 +136,8 @@ todoCardClick.addEventListener('click', function (event) {
         const todoId = todoCard.dataset.id;
         const todoData = findTodoById(todoId);
 
+        console.log("todoData :"+todoData);
+
         if (event.target.classList.contains("edit-todo-btn")) {
             dialogTitle.textContent = "Edit Todo";
             saveTodoBtn.textContent = "Update Todo";
@@ -158,4 +166,14 @@ todoCardClick.addEventListener('click', function (event) {
             }
         }
     }
+});
+
+
+addProjectBtn.addEventListener('click',function(){
+    projectModal.showModal();
+});
+
+
+closeProjectModal.addEventListener('click', function () {
+    projectModal.close();
 });
