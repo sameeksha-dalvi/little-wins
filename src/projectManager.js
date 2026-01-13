@@ -1,6 +1,7 @@
 const projects = [];
 
 let currentProjectId = null;
+let defaultProjectId = null;
 
 function createProject(id, name) {
   const todos = [];
@@ -65,6 +66,7 @@ function initDefaultProject() {
     const defaultProject = createProject(crypto.randomUUID(), "Default");
     addProject(defaultProject);
     currentProjectId = defaultProject.getId();
+    defaultProjectId = defaultProject.getId();
   }
 }
 
@@ -124,5 +126,6 @@ export {
   findTodoById,
   deleteTodoById,
   toggleTodoCompleted,
-  updateTodo
+  updateTodo,
+  defaultProjectId
 };

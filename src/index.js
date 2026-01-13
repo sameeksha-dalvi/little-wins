@@ -1,9 +1,18 @@
 import "./styles.css";
 import { createTodo } from "./todoManager";
 import { showTodoCard, toggleCompletedUI, removeTodoCardUI, updateTodoDataUI } from "./todoUI";
-import { initDefaultProject, addTodo, findTodoById, toggleTodoCompleted, deleteTodoById, updateTodo} from "./projectManager";
+import { initDefaultProject, createProject, addProject,getCurrentProject , setCurrentProject, addTodo, findTodoById, toggleTodoCompleted, deleteTodoById, updateTodo , getTodosOfCurrentProject} from "./projectManager";
+import { addProjectToUI, switchProjectUI } from "./projectUI";
 
 initDefaultProject();
+
+const defaultProject = getCurrentProject();
+addProjectToUI(defaultProject, (clickedProject) => {
+  setCurrentProject(clickedProject.getId());
+  switchProjectUI(clickedProject);
+  loadTodosOfCurrentProject();
+});
+switchProjectUI(defaultProject);
 
 const addTodoBtn = document.querySelector("#add-todo-btn");
 const todoModal = document.querySelector("#add-todo-modal");
@@ -69,7 +78,7 @@ saveTodoBtn.addEventListener("click", function (event) {
     }
 
     if (saveTodoBtn.textContent.trim().toLowerCase() === "update todo") {
-       
+
         const updatedTodo = updateTodo(
             currentEditTodoId,
             todoTitle.value,
@@ -79,7 +88,7 @@ saveTodoBtn.addEventListener("click", function (event) {
             todoNotes.value
         );
 
-        updateTodoDataUI(currentEditTodoId,updatedTodo);
+        updateTodoDataUI(currentEditTodoId, updatedTodo);
 
     }
 
@@ -136,7 +145,7 @@ todoCardClick.addEventListener('click', function (event) {
         const todoId = todoCard.dataset.id;
         const todoData = findTodoById(todoId);
 
-        console.log("todoData :"+todoData);
+        console.log("todoData :" + todoData);
 
         if (event.target.classList.contains("edit-todo-btn")) {
             dialogTitle.textContent = "Edit Todo";
@@ -169,7 +178,7 @@ todoCardClick.addEventListener('click', function (event) {
 });
 
 
-addProjectBtn.addEventListener('click',function(){
+addProjectBtn.addEventListener('click', function () {
     projectModal.showModal();
 });
 
@@ -177,3 +186,50 @@ addProjectBtn.addEventListener('click',function(){
 closeProjectModal.addEventListener('click', function () {
     projectModal.close();
 });
+
+
+
+const projectNameInput = document.querySelector("#project-name");
+const saveProjectBtn = document.querySelector("#save-project-btn");
+const projectListDiv = document.querySelector("#project-list");
+const currentProjectHeader = document.querySelector("#current-project");
+const todoProjectName = document.querySelector("#todo-project-name");
+
+saveProjectBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    if (projectNameInput.value.trim() === "") {
+        projectNameInput.setCustomValidity("Please enter project name");
+        projectNameInput.reportValidity();
+        return;
+    }
+
+    const projectId = crypto.randomUUID();
+    const project = createProject(projectId, projectNameInput.value);
+
+    addProject(project);
+    setCurrentProject(projectId);
+
+    addProjectToUI(project, (clickedProject) => {
+        setCurrentProject(clickedProject.getId());
+        switchProjectUI(clickedProject);
+        loadTodosOfCurrentProject();
+    });
+    switchProjectUI(project);
+
+    projectNameInput.value = "";
+    projectModal.close();
+});
+
+
+
+
+function clearAllTodosUI() {
+    document.querySelector(".todo-card-container").innerHTML = "";
+}
+
+function loadTodosOfCurrentProject() {
+    clearAllTodosUI();
+    const todos = getTodosOfCurrentProject();
+    todos.forEach(todo => showTodoCard(todo));
+}

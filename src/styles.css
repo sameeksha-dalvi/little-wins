@@ -149,9 +149,13 @@ header {
     border-radius: 8px;
     color: var(--background);
     font-size: 20px;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        transform 0.1s ease,
 }
 
-#delete-project-btn {
+.delete-project-btn {
     background-color: var(--background);
     border: none;
     padding: 5px 10px;
@@ -160,7 +164,7 @@ header {
     letter-spacing: 1px;
 }
 
-#delete-project-btn:hover {
+.delete-project-btn:hover {
     background-color: var(--hero-gradient-start);
 }
 
@@ -339,6 +343,32 @@ textarea {
     border-color: var(--todo-completed-border);
     opacity: 0.75;
 }
+
+#project-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 5px;
+}
+
+.current-project-sidebar:hover {
+    background-color: var(--primary-button-hover);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    transform: translateY(-1px);
+}
+
+.current-project-sidebar:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.current-project-sidebar.active-project {
+    background-color: var(--heading-color);
+    color: var(--background);
+    border-color: var(--heading-color);
+}
+
 
 footer {
     text-align: center;
