@@ -378,3 +378,37 @@ footer {
     background-color: var(--footer-bg);
     color: var(--footer-text);
 }
+
+
+@media (max-width: 600px) {
+
+    .content-container,
+    .todo-card {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .todo-data-section {
+        width: 100%;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .todo-sub {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 5px;
+    }
+
+    .todo-subText,.todo-btn  {
+        font-size: 15px;
+        margin: 0%;
+    }
+
+    .todo-mainText {
+        font-size: 20px;
+        margin: 0%;
+    }
+}
