@@ -1,4 +1,5 @@
-import { defaultProjectId } from "./projectManager";
+import { defaultProjectId, deleteProjectById,getCurrentProject, setCurrentProject, getAllProjects } from "./projectManager";
+import {loadTodosOfCurrentProject} from "./index.js"
 
 function addProjectToUI(project, onClick) {
   const projectListDiv = document.querySelector("#project-list");
@@ -15,13 +16,31 @@ function addProjectToUI(project, onClick) {
   deleteBtn.className = "delete-project-btn";
 
   deleteBtn.addEventListener("click", (e) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
 
     if (project.getId() === defaultProjectId) {
       alert("Default project cannot be deleted.");
       return;
     }
+
+    const deleted = deleteProjectById(project.getId());
+    if (!deleted) return;
+
     wrapper.remove();
+
+    // If current project was deleted → go to default
+    const current = getCurrentProject();
+    if (!current || current.getId() === project.getId()) {
+      setCurrentProject(defaultProjectId);
+
+      const defaultProject = getAllProjects()
+        .find(p => p.getId() === defaultProjectId);
+
+      if (defaultProject) {
+        switchProjectUI(defaultProject);
+        loadTodosOfCurrentProject();
+      }
+    }
   });
 
   wrapper.addEventListener("click", () => {
@@ -46,5 +65,7 @@ function switchProjectUI(project) {
     activeDiv.classList.add("active-project");
   }
 }
+
+
 
 export { addProjectToUI, switchProjectUI };

@@ -1,3 +1,5 @@
+import { createTodo } from "./todoManager";
+
 const projects = [];
 
 let currentProjectId = null;
@@ -24,6 +26,8 @@ function createProject(id, name) {
     todos.splice(index, 1);
     return true;
   };
+
+
 
   const toggleTodoCompleted = (todoId) => {
     const todo = findTodoById(todoId);
@@ -59,6 +63,7 @@ function createProject(id, name) {
 
 function addProject(project) {
   projects.push(project);
+  saveToLocalStorage();
 }
 
 function initDefaultProject() {
@@ -67,6 +72,7 @@ function initDefaultProject() {
     addProject(defaultProject);
     currentProjectId = defaultProject.getId();
     defaultProjectId = defaultProject.getId();
+    saveToLocalStorage();
   }
 }
 
@@ -83,6 +89,7 @@ function addTodo(todo) {
   const project = getCurrentProject();
   if (!project) return;
   project.addTodo(todo);
+  saveToLocalStorage();
 }
 
 function findTodoById(todoId) {
@@ -94,19 +101,26 @@ function findTodoById(todoId) {
 function deleteTodoById(todoId) {
   const project = getCurrentProject();
   if (!project) return false;
-  return project.deleteTodoById(todoId);
+  const result = project.deleteTodoById(todoId);
+  saveToLocalStorage();
+  return result;
+
 }
 
 function toggleTodoCompleted(todoId) {
   const project = getCurrentProject();
   if (!project) return;
+  saveToLocalStorage();
   return project.toggleTodoCompleted(todoId);
+
 }
 
 function updateTodo(todoId, newTitle, newDesc, newDate, newPriority, newNotes) {
   const project = getCurrentProject();
   if (!project) return;
+  saveToLocalStorage();
   return project.updateTodo(todoId, newTitle, newDesc, newDate, newPriority, newNotes);
+
 }
 
 function getTodosOfCurrentProject() {
@@ -114,6 +128,71 @@ function getTodosOfCurrentProject() {
   if (!project) return [];
   return project.getTodos();
 }
+
+function deleteProjectById(projectId) {
+  const index = projects.findIndex(p => p.getId() === projectId);
+  if (index === -1) return false;
+  projects.splice(index, 1);
+  saveToLocalStorage();
+  return true;
+};
+
+function saveToLocalStorage() {
+  const data = projects.map(project => ({
+    id: project.getId(),
+    name: project.getName(),
+    todos: project.getTodos().map(todo => ({
+      id: todo.getTodoId(),
+      title: todo.getTitle(),
+      desc: todo.getDesc(),
+      dueDate: todo.getDueDate(),
+      priority: todo.getPriority(),
+      notes: todo.getNotes(),
+      completed: todo.isCompleted()
+    }))
+  }));
+  localStorage.setItem("projectsData", JSON.stringify(data));
+}
+
+function loadFromLocalStorage() {
+  const data = localStorage.getItem("projectsData");
+  console.log("data " + data);
+  if (!data) return false;
+
+  const parsed = JSON.parse(data);
+  projects.length = 0; // clear existing
+
+  parsed.forEach((projectData, index) => {
+    const project = createProject(projectData.id, projectData.name);
+
+    projectData.todos.forEach(todoData => {
+      const todo = createTodo(
+        todoData.id,
+        todoData.title,
+        todoData.desc,
+        todoData.dueDate,
+        todoData.priority,
+        todoData.notes
+      );
+      if (todoData.completed) todo.toggleCompleted();
+      project.addTodo(todo);
+    });
+
+    projects.push(project);
+
+    if (index === 0) {
+      defaultProjectId = project.getId();
+      currentProjectId = project.getId();
+    }
+  });
+
+  return true;
+}
+
+function getAllProjects() {
+  return projects;
+}
+
 
 export {
   createProject,
@@ -127,5 +206,8 @@ export {
   deleteTodoById,
   toggleTodoCompleted,
   updateTodo,
-  defaultProjectId
+  defaultProjectId,
+  loadFromLocalStorage,
+  getAllProjects,
+  deleteProjectById
 };

@@ -1,19 +1,40 @@
 import "./styles.css";
 import { createTodo } from "./todoManager";
 import { showTodoCard, toggleCompletedUI, removeTodoCardUI, updateTodoDataUI } from "./todoUI";
-import { initDefaultProject, createProject, addProject,getCurrentProject , setCurrentProject, addTodo, findTodoById, toggleTodoCompleted, deleteTodoById, updateTodo , getTodosOfCurrentProject} from "./projectManager";
+import { initDefaultProject, createProject, addProject, getCurrentProject, setCurrentProject, addTodo, findTodoById, toggleTodoCompleted, deleteTodoById, updateTodo, getTodosOfCurrentProject,getAllProjects,loadFromLocalStorage } from "./projectManager";
 import { addProjectToUI, switchProjectUI } from "./projectUI";
 
-initDefaultProject();
+// initDefaultProject();
 
-const defaultProject = getCurrentProject();
-addProjectToUI(defaultProject, (clickedProject) => {
-  setCurrentProject(clickedProject.getId());
-  switchProjectUI(clickedProject);
-  loadTodosOfCurrentProject();
+// const defaultProject = getCurrentProject();
+// addProjectToUI(defaultProject, (clickedProject) => {
+//     setCurrentProject(clickedProject.getId());
+//     switchProjectUI(clickedProject);
+//     loadTodosOfCurrentProject();
+// });
+// switchProjectUI(defaultProject);
+
+const hasData = loadFromLocalStorage();
+
+if (!hasData) {
+  initDefaultProject();
+}
+
+// Render all projects
+getAllProjects().forEach(project => {
+  addProjectToUI(project, (clickedProject) => {
+    setCurrentProject(clickedProject.getId());
+    switchProjectUI(clickedProject);
+    loadTodosOfCurrentProject();
+  });
 });
-switchProjectUI(defaultProject);
 
+// Set current project UI
+const current = getCurrentProject();
+if (current) {
+  switchProjectUI(current);
+  loadTodosOfCurrentProject();
+}
 const addTodoBtn = document.querySelector("#add-todo-btn");
 const todoModal = document.querySelector("#add-todo-modal");
 const closetodoModal = document.querySelector("#close-add-todo");
@@ -216,7 +237,7 @@ saveProjectBtn.addEventListener("click", function (e) {
         loadTodosOfCurrentProject();
     });
     switchProjectUI(project);
-
+    loadTodosOfCurrentProject();
     projectNameInput.value = "";
     projectModal.close();
 });
@@ -233,3 +254,5 @@ function loadTodosOfCurrentProject() {
     const todos = getTodosOfCurrentProject();
     todos.forEach(todo => showTodoCard(todo));
 }
+
+export{loadTodosOfCurrentProject};
