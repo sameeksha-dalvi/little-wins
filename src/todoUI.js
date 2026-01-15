@@ -4,7 +4,7 @@ function showTodoCard(todo) {
     const todoCardContainer = document.querySelector('.todo-card-container');
 
     const todoCardDiv = document.createElement('div');
-    todoCardDiv.className = "todo-card";
+    todoCardDiv.className = "todo-card " + todo.getPriority().toLowerCase() ;
     todoCardDiv.setAttribute('data-id', todo.getTodoId());
 
     const todoDataDiv = document.createElement('div');
@@ -92,6 +92,8 @@ function updateTodoDataUI(todoId,todo){
     todoCard.firstChild.firstChild.textContent = todo.getTitle();
     todoCard.firstChild.lastChild.children[0].textContent = "Due Date : " + todo.getDueDate();
     todoCard.firstChild.lastChild.children[1].textContent = "Priority : " + todo.getPriority();
+    todoCard.classList.remove('low','medium','high');
+    todoCard.classList.add(todo.getPriority().toLowerCase());
 }
 
 export { showTodoCard, toggleCompletedUI, removeTodoCardUI, updateTodoDataUI };

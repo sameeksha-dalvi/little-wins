@@ -21,6 +21,12 @@
     --footer-bg: #292524;
     --footer-text: #E7E5E4;
     --todo-completed-border: #D6D3D1;
+    --priority-low: #34d399;
+    /* soft green */
+    --priority-medium: #fbbf24;
+    /* warm yellow */
+    --priority-high: #f87171;
+    /* soft red */
 }
 
 body {
@@ -369,6 +375,18 @@ textarea {
     border-color: var(--heading-color);
 }
 
+.low {
+    border-left: 5px solid var(--priority-low);
+}
+
+.medium {
+    border-left: 5px solid var(--priority-medium);
+}
+
+.high {
+    border-left: 5px solid var(--priority-high);
+}
+
 
 footer {
     text-align: center;
@@ -402,7 +420,8 @@ footer {
         margin-top: 5px;
     }
 
-    .todo-subText,.todo-btn  {
+    .todo-subText,
+    .todo-btn {
         font-size: 15px;
         margin: 0%;
     }
