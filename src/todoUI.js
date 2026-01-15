@@ -1,10 +1,11 @@
+import { format } from "date-fns";
 
 function showTodoCard(todo) {
 
     const todoCardContainer = document.querySelector('.todo-card-container');
 
     const todoCardDiv = document.createElement('div');
-    todoCardDiv.className = "todo-card " + todo.getPriority().toLowerCase() ;
+    todoCardDiv.className = "todo-card " + todo.getPriority().toLowerCase();
     todoCardDiv.setAttribute('data-id', todo.getTodoId());
 
     const todoDataDiv = document.createElement('div');
@@ -38,7 +39,7 @@ function showTodoCard(todo) {
 
     const todoDueDate = document.createElement('h2');
     todoDueDate.className = "todo-subText";
-    todoDueDate.textContent = "Due Date : " + todo.getDueDate();
+    todoDueDate.textContent = "Due Date : " +format(todo.getDueDate(), "dd MMM yyyy") ;
 
     const todoPriority = document.createElement('h2');
 
@@ -87,12 +88,12 @@ function removeTodoCardUI(todoId) {
 
 }
 
-function updateTodoDataUI(todoId,todo){
+function updateTodoDataUI(todoId, todo) {
     const todoCard = document.querySelector(`.todo-card[data-id="${todoId}"]`);
     todoCard.firstChild.firstChild.textContent = todo.getTitle();
-    todoCard.firstChild.lastChild.children[0].textContent = "Due Date : " + todo.getDueDate();
+    todoCard.firstChild.lastChild.children[0].textContent = "Due Date : " + format(todo.getDueDate(), "dd MMM yyyy");
     todoCard.firstChild.lastChild.children[1].textContent = "Priority : " + todo.getPriority();
-    todoCard.classList.remove('low','medium','high');
+    todoCard.classList.remove('low', 'medium', 'high');
     todoCard.classList.add(todo.getPriority().toLowerCase());
 }
 
