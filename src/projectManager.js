@@ -120,8 +120,9 @@ function toggleTodoCompleted(todoId) {
 function updateTodo(todoId, newTitle, newDesc, newDate, newPriority, newNotes) {
   const project = getCurrentProject();
   if (!project) return;
+  const result = project.updateTodo(todoId, newTitle, newDesc, newDate, newPriority, newNotes);
   saveToLocalStorage();
-  return project.updateTodo(todoId, newTitle, newDesc, newDate, newPriority, newNotes);
+  return result;
 
 }
 
@@ -178,7 +179,7 @@ function loadFromLocalStorage() {
       );
       if (todoData.completed) {
         todo.toggleCompleted();
-        console.log(" loadFromLocalStorage line 181 : "+todo.getTodoId())
+        console.log(" loadFromLocalStorage line 181 : " + todo.getTodoId())
         toggleCompletedUI(todo.getTodoId(), "complete");
       }
       project.addTodo(todo);
