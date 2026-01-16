@@ -48,6 +48,8 @@ function showTodoCard(todo) {
         todoCardDiv.classList.add('todo-card-completed');
         todoTitle.classList.add('strike-todo');
         todoCompleteBtn.textContent = "Undo";
+        todoViewBtn.disabled = true;
+        todoViewBtn.classList.add('disabled-btn');
     }
     
     todoButtonDiv.appendChild(todoViewBtn);
@@ -77,12 +79,16 @@ function toggleCompletedUI(todoId, action) {
         todoCard.classList.add('todo-card-completed');
         todoCard.firstChild.firstChild.classList.add('strike-todo');
         todoCard.lastChild.children[1].textContent = "Undo";
+        todoCard.lastChild.children[0].disabled = true;
+        todoCard.lastChild.children[0].classList.add('disabled-btn');
     }
 
     if (action === "undo") {
         todoCard.lastChild.children[1].textContent = "Complete";
         todoCard.classList.remove('todo-card-completed');
         todoCard.firstChild.firstChild.classList.remove('strike-todo');
+        todoCard.lastChild.children[0].disabled = false;
+        todoCard.lastChild.children[0].classList.remove('disabled-btn');
     }
 
 

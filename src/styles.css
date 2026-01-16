@@ -387,6 +387,10 @@ textarea {
     border-left: 5px solid var(--priority-high);
 }
 
+.disabled-btn {
+  opacity: 0.4;
+  pointer-events: none;
+}
 
 footer {
     text-align: center;
