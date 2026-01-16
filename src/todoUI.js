@@ -8,6 +8,8 @@ function showTodoCard(todo) {
     todoCardDiv.className = "todo-card " + todo.getPriority().toLowerCase();
     todoCardDiv.setAttribute('data-id', todo.getTodoId());
 
+
+
     const todoDataDiv = document.createElement('div');
     todoDataDiv.className = "todo-data-section";
 
@@ -26,10 +28,6 @@ function showTodoCard(todo) {
     todoDeleteBtn.className = "todo-btn delete-todo-btn";
     todoDeleteBtn.textContent = "Delete";
 
-    todoButtonDiv.appendChild(todoViewBtn);
-    todoButtonDiv.appendChild(todoCompleteBtn);
-    todoButtonDiv.appendChild(todoDeleteBtn);
-
     const todoTitle = document.createElement('h2');
     todoTitle.className = "todo-mainText";
     todoTitle.textContent = todo.getTitle();
@@ -39,12 +37,22 @@ function showTodoCard(todo) {
 
     const todoDueDate = document.createElement('h2');
     todoDueDate.className = "todo-subText";
-    todoDueDate.textContent = "Due Date : " +format(todo.getDueDate(), "dd MMM yyyy") ;
+    todoDueDate.textContent = "Due Date : " + format(todo.getDueDate(), "dd MMM yyyy");
 
     const todoPriority = document.createElement('h2');
 
     todoPriority.className = "todo-subText";
     todoPriority.textContent = "Priority : " + todo.getPriority();
+
+    if (todo.isCompleted()) {
+        todoCardDiv.classList.add('todo-card-completed');
+        todoTitle.classList.add('strike-todo');
+        todoCompleteBtn.textContent = "Undo";
+    }
+    
+    todoButtonDiv.appendChild(todoViewBtn);
+    todoButtonDiv.appendChild(todoCompleteBtn);
+    todoButtonDiv.appendChild(todoDeleteBtn);
 
 
     todoSubDiv.appendChild(todoDueDate);
@@ -64,7 +72,7 @@ function showTodoCard(todo) {
 function toggleCompletedUI(todoId, action) {
 
     const todoCard = document.querySelector(`.todo-card[data-id="${todoId}"]`);
-
+    if (!todoCard) return;
     if (action === "complete") {
         todoCard.classList.add('todo-card-completed');
         todoCard.firstChild.firstChild.classList.add('strike-todo');

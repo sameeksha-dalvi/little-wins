@@ -4,16 +4,6 @@ import { showTodoCard, toggleCompletedUI, removeTodoCardUI, updateTodoDataUI } f
 import { initDefaultProject, createProject, addProject, getCurrentProject, setCurrentProject, addTodo, findTodoById, toggleTodoCompleted, deleteTodoById, updateTodo, getTodosOfCurrentProject,getAllProjects,loadFromLocalStorage } from "./projectManager";
 import { addProjectToUI, switchProjectUI } from "./projectUI";
 
-// initDefaultProject();
-
-// const defaultProject = getCurrentProject();
-// addProjectToUI(defaultProject, (clickedProject) => {
-//     setCurrentProject(clickedProject.getId());
-//     switchProjectUI(clickedProject);
-//     loadTodosOfCurrentProject();
-// });
-// switchProjectUI(defaultProject);
-
 const hasData = loadFromLocalStorage();
 
 if (!hasData) {
@@ -212,9 +202,6 @@ closeProjectModal.addEventListener('click', function () {
 
 const projectNameInput = document.querySelector("#project-name");
 const saveProjectBtn = document.querySelector("#save-project-btn");
-const projectListDiv = document.querySelector("#project-list");
-const currentProjectHeader = document.querySelector("#current-project");
-const todoProjectName = document.querySelector("#todo-project-name");
 
 saveProjectBtn.addEventListener("click", function (e) {
     e.preventDefault();

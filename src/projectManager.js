@@ -1,4 +1,5 @@
 import { createTodo } from "./todoManager";
+import { toggleCompletedUI } from "./todoUI";
 
 const projects = [];
 
@@ -110,8 +111,9 @@ function deleteTodoById(todoId) {
 function toggleTodoCompleted(todoId) {
   const project = getCurrentProject();
   if (!project) return;
+  const result = project.toggleTodoCompleted(todoId)
   saveToLocalStorage();
-  return project.toggleTodoCompleted(todoId);
+  return result;
 
 }
 
@@ -174,7 +176,11 @@ function loadFromLocalStorage() {
         todoData.priority,
         todoData.notes
       );
-      if (todoData.completed) todo.toggleCompleted();
+      if (todoData.completed) {
+        todo.toggleCompleted();
+        console.log(" loadFromLocalStorage line 181 : "+todo.getTodoId())
+        toggleCompletedUI(todo.getTodoId(), "complete");
+      }
       project.addTodo(todo);
     });
 
